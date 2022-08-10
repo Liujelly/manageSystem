@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lsd.qiye.system.dao.AdminDAO">
+    <resultMap id="AdminResultMap" type="lsd.qiye.system.entity.AdminDO">
+        <id column="admin_id" property="adminId"/>
+        <result column="admin_pwd" property="adminPwd"/>
+        <result column="admin_name" property="adminName"/>
+        <result column="admin_sex" property="adminSex"/>
+        <result column="admin_email" property="adminEmail"/>
+        <result column="department" property="department"/>
+    </resultMap>
+
+    <select id="findById" resultMap="AdminResultMap">
+        select * from admin where admin_id=#{adminId}
+    </select>
+
+
+</mapper>

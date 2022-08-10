@@ -1,12 +1,11 @@
 package lsd.qiye.system.dao;
 
-import lsd.qiye.system.entity.UserDO;
+import lsd.qiye.system.entity.AdminDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface UserDAO {
+public interface AdminDAO {
 
-    UserDO findById(@Param("userId") String userId);
-
+    AdminDO findById(@Param("adminId") String adminId);
 }
