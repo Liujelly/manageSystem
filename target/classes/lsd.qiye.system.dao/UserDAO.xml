@@ -2,18 +2,76 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lsd.qiye.system.dao.UserDAO">
-    <resultMap id="userResultMap" type="lsd.qiye.system.entity.UserDO">
+    <resultMap id="userResultMap" type="lsd.qiye.system.dataobject.UserDO">
         <id column="user_id" property="userId"/>
         <result column="user_pwd" property="userPwd"/>
         <result column="user_name" property="userName"/>
         <result column="user_sex" property="userSex"/>
         <result column="user_email" property="userEmail"/>
         <result column="department" property="department"/>
+        <result column="posts" property="posts"/>
+        <result column="role" property="role"/>
     </resultMap>
     
-    <select id="findById" resultMap="userResultMap">
-        select * from user where user_id=#{userId}
+    <select id="findById_Pwd" resultMap="userResultMap">
+        select * from user
+            <where>
+                <if test="userId != null">
+                user_id=#{userId}
+                </if>
+                <if test="userPwd !=null">
+                    and user_pwd=#{userPwd}
+                </if>
+            </where>
     </select>
 
-    
+    <insert id="insert" parameterType="lsd.qiye.system.dataobject.UserDO">
+        insert into user (user_id,user_pwd,user_name,user_sex,user_email,department,posts,role)
+        VALUES(#{userId},#{userPwd},#{userSex},#{userEmail},#{department},#{posts},#{role})
+    </insert>
+
+    <update id="update" parameterType="lsd.qiye.system.dataobject.UserDO">
+        update user
+        <set>
+            <if test="userName != null">
+                user_name=#{userName},
+            </if>
+            <if test="userSex != null">
+                user_sex=#{userSex},
+            </if>
+            <if test="userEmail != null">
+                user_email=#{userEmail},
+            </if>
+            <if test="department != null">
+                department=#{department},
+            </if>
+            <if test="posts != null">
+                posts=#{posts},
+            </if>
+        </set>
+            where user_id=#{userId}
+    </update>
+
+    <update id="updatePwd">
+        update user set user_pwd=#{newPwd} where user_id=#{userId};
+    </update>
+
+    <delete id="delete" >
+        delete from user where user_id=#{userId}
+    </delete>
+
+    <select id="findComplex" resultMap="userResultMap">
+        select * from user
+        <where>
+            <if test="department != null">
+                department=#{department},
+            </if>
+            <if test="userName != null">
+                user_name=#{userName},
+            </if>
+            <if test="userId != null">
+                user_id=#{userId}
+            </if>
+        </where>
+    </select>
 </mapper>

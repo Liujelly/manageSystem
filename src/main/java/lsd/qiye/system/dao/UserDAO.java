@@ -1,12 +1,28 @@
 package lsd.qiye.system.dao;
 
-import lsd.qiye.system.entity.UserDO;
+import lsd.qiye.system.dataobject.UserDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
+@Repository
 public interface UserDAO {
+    //通过id和密码查询
+    UserDO findById_Pwd(@Param("userId") String userId,@Param("userPwd") String userPwd);
+    //插入数据
+    int C(UserDO userDO);
+    //修改数据
+    int update(UserDO userDO);
+    //修改密码
+    int updatePwd(@Param("userId") String userId,@Param("newPwd") String newPwd);
+    //根据id删除用户
+    int delete(@Param("userId") long userId);
+    //复合查询(部门，名字，id）
+    List<UserDO> findComplex(@Param("department") String department,
+                             @Param("userName") String userName, @Param("userId") String userId);
 
-    UserDO findById(@Param("userId") String userId);
 
 }
