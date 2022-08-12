@@ -17,8 +17,14 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/iframeRight.html").setViewName("welcome");
         //右侧个人信息重定向
         registry.addViewController("/info.html").setViewName("info");
+        //欢迎界面重定向
+        registry.addViewController("/welcome.html").setViewName("welcome");
         //右侧修改密码重定向
         registry.addViewController("/pwd.html").setViewName("pwd");
+        //右侧员工管理页面重定向
+        registry.addViewController("/empList.html").setViewName("empList");
+        //增加员工页面重定向
+        registry.addViewController("/addEmp.html").setViewName("addEmp");
     }
 
     @Override

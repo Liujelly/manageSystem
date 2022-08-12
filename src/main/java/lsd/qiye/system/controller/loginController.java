@@ -2,6 +2,7 @@ package lsd.qiye.system.controller;
 
 import lsd.qiye.system.dao.UserDAO;
 import lsd.qiye.system.dataobject.UserDO;
+import lsd.qiye.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,8 @@ import java.util.List;
 
 @Controller
 public class loginController {
-    @Resource
-    private UserDAO userDAO;
+    @Autowired
+    private UserService userService;
 
     //用户登录，根据id，密码验证
     @GetMapping("/login")
@@ -23,7 +24,7 @@ public class loginController {
                         @RequestParam("userPwd") String userPwd,
                         @RequestParam("code") String code, Model model,
                         HttpSession session){
-        UserDO userDO=userDAO.findById_Pwd(userId,userPwd);
+        UserDO userDO=userService.userFind(userId);
         if(userDO!=null&&userId.equals(userDO.getUserId())&&userPwd.equals(userDO.getUserPwd())&&"6982".equals(code)){
             session.setAttribute("loginUser",userId);
             return "redirect:/main.html";

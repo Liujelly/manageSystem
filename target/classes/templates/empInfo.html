@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>个人信息</title>
+    <title>员工信息</title>
     <link rel="stylesheet" th:href="@{/css/pintuer.css}">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
     <script th:src="@{/js/jquery.js}"></script>
@@ -13,15 +13,24 @@
 </head>
 <body>
 <div class="panel admin-panel">
-    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 个人信息</strong></div>
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 员工信息</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" th:action="@{/changeOwnInfo}">
+        <form method="post" class="form-x" th:action="@{/changeEmpInfo}">
+            <div class="form-group" >
+                <div class="label" style="padding-top:10px">
+                    <label>员工id：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" readonly="readonly" style="width:25%; float:left;border: 0px" name="userId"  th:value="${emp.userId}"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="label">
                     <label>姓名：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input" style="width:25%; float:left;" name="userName" th:value="${user.userName}"/>
+                    <input type="text"  class="input" style="width:25%; float:left;" name="userName" th:value="${emp.userName}"/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -30,7 +39,7 @@
                     <label>性别：</label>
                 </div>
                 <div class="field">
-                    <input type="text" id="url1" name="userSex" th:value="${user.userSex}"class="input tips" style="width:25%; float:left;"  data-toggle="hover" data-place="right" data-image=""  />
+                    <input type="text" id="url1" name="userSex" th:value="${emp.userSex}"class="input tips" style="width:25%; float:left;"  data-toggle="hover" data-place="right" data-image=""  />
                 </div>
             </div>
             <div class="form-group">
@@ -38,7 +47,7 @@
                     <label>联系电话：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input" style="width:25%; float:left;" name="userPhone" th:value="${user.userPhone}" />
+                    <input type="text" class="input" style="width:25%; float:left;" name="userPhone" th:value="${emp.userPhone}" />
                 </div>
             </div>
             <div class="form-group" >
@@ -46,7 +55,7 @@
                     <label>邮箱：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input" style="width:25%; float:left;" name="userEmail"  th:value="${user.userEmail}"/>
+                    <input type="text" class="input" style="width:25%; float:left;" name="userEmail"  th:value="${emp.userEmail}"/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -55,7 +64,7 @@
                     <label>所属部门：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input" style="width:25%; float:left;" name="department"  th:value="${user.department}"/>
+                    <input type="text" class="input" style="width:25%; float:left;" name="department"  th:value="${emp.department}"/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -64,7 +73,7 @@
                     <label>职位：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input" style="width:25%; float:left;" name="posts" th:value="${user.posts}" />
+                    <input type="text" class="input" style="width:25%; float:left;" name="posts" th:value="${emp.posts}" />
                     <div class="tips"></div>
                 </div>
             </div>
@@ -74,6 +83,7 @@
                 </div>
                 <div class="field">
                     <button class="button bg-main icon-check-square-o" type="submit"> 修改提交</button>
+                    <a class="button bg-main " th:href="@{/empPage}">返回</a>
                 </div>
             </div>
         </form>

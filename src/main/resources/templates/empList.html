@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>员工管理</title>
+    <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+
+</head>
+<body>
+<div  id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 员工列表</strong></div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px;">
+                <li> <a class="button border-main icon-plus-square-o" th:href="@{/addEmp.html}"> 添加员工信息</a> </li>
+                <li>
+                    <form th:action="@{/empFind}" method="post">
+                        <input type="text" placeholder="部门" name="department" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                        <input type="text" placeholder="姓名" name="userName" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                        <input type="text" placeholder="id" name="userId" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                        <button  class="button border-main icon-search" onclick="changesearch()"  type="submit"> 搜索</button>
+                    </form>
+                </li>
+                <li><a th:href="@{/empPage}" style="padding:5px; margin:5px;" class="button border-blue icon-edit" onclick="sorts()">刷新</a></li>
+            </ul>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="100" style="text-align:left; padding-left:35px;">ID</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>邮件</th>
+                <th>部门</th>
+                <th width="10%">职位</th>
+                <th width="310">操作</th>
+            </tr>
+            <volist name="list" id="vo">
+
+                <div th:each="emp:${emps}">
+
+                <tr >
+                    <td style="text-align:left; padding-left:20px;"  th:text="${emp.userId}"></td>
+                    <td  th:text="${emp.userName}"></td>
+                    <td width="10%" th:text="${emp.userSex}"></td>
+                    <td th:text="${emp.userPhone}"></td>
+                    <td th:text="${emp.userEmail}"></td>
+                    <td th:text="${emp.department}"></td>
+                    <td th:text="${emp.posts}"></td>
+                    <td>
+                        <form class="button-group" th:action="@{/empInfo}">
+                            <button class="button border-main" name="userId" th:value="${emp.getUserId()}"><span class="icon-edit"></span> 修改</button>
+                        </form>
+                        <form class="button-group" th:action="@{/userDelete}">
+                            <button class="button border-red" name="userId" th:value="${emp.getUserId()}" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</button>
+                        </form>
+                    </td>
+                </tr>
+                    </form>
+                </div>
+                <tr >
+                    <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+                </tr>
+            </volist>
+        </table>
+    </div>
+</div>
+
+<!--删除确认-->
+<script type="text/javascript">
+    function del(id,mid,iscid){
+        if(confirm("您确定要删除吗?")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

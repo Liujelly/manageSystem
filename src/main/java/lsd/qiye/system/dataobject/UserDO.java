@@ -5,6 +5,7 @@ public class UserDO {
     private String userPwd;
     private String userName;
     private String userSex;
+    private String userPhone;
     private String userEmail;
     private String department;
     private String posts;
@@ -75,5 +76,14 @@ public class UserDO {
     public void setPosts(String posts) {
         this.posts = posts;
     }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
 
 }

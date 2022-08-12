@@ -7,6 +7,7 @@
         <result column="user_pwd" property="userPwd"/>
         <result column="user_name" property="userName"/>
         <result column="user_sex" property="userSex"/>
+        <result column="user_phone" property="userPhone"/>
         <result column="user_email" property="userEmail"/>
         <result column="department" property="department"/>
         <result column="posts" property="posts"/>
@@ -26,8 +27,8 @@
     </select>
 
     <insert id="insert" parameterType="lsd.qiye.system.dataobject.UserDO">
-        insert into user (user_id,user_pwd,user_name,user_sex,user_email,department,posts,role)
-        VALUES(#{userId},#{userPwd},#{userSex},#{userEmail},#{department},#{posts},#{role})
+        insert into user (user_id,user_pwd,user_name,user_sex,user_phone,user_email,department,posts,role)
+        VALUES(#{userId},#{userPwd},#{userName},#{userSex},#{userPhone},#{userEmail},#{department},#{posts},#{role})
     </insert>
 
     <update id="update" parameterType="lsd.qiye.system.dataobject.UserDO">
@@ -38,6 +39,9 @@
             </if>
             <if test="userSex != null">
                 user_sex=#{userSex},
+            </if>
+            <if test="userPhone != null">
+                user_phone=#{userPhone},
             </if>
             <if test="userEmail != null">
                 user_email=#{userEmail},
@@ -60,18 +64,22 @@
         delete from user where user_id=#{userId}
     </delete>
 
-    <select id="findComplex" resultMap="userResultMap">
+    <select id="findComplex" resultMap="userResultMap" resultType="user">
         select * from user
         <where>
             <if test="department != null">
-                department=#{department},
-            </if>
-            <if test="userName != null">
-                user_name=#{userName},
+                 department=#{department}
             </if>
             <if test="userId != null">
-                user_id=#{userId}
+               and  user_id=#{userId}
+            </if>
+            <if test="userName != null">
+                and  user_name=#{userName}
             </if>
         </where>
+    </select>
+
+    <select id="findAll" resultMap="userResultMap">
+        select * from user
     </select>
 </mapper>
