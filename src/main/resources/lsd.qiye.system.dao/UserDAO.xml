@@ -67,14 +67,14 @@
     <select id="findComplex" resultMap="userResultMap" >
         select * from user
         <where>
-            <if test="department != null">
+            <if test="department != null and department !='' and department !='0'.toString()">
                  department=#{department}
             </if>
-            <if test="userId != null">
-               or  user_id=#{userId}
+            <if test="userName != null and userName !='' and userName !='0'.toString()" >
+                and  user_name=#{userName}
             </if>
-            <if test="userName != null">
-                or  user_name=#{userName}
+            <if test="userId != null and userId !='' and userId !='0'.toString()">
+                and  user_id=#{userId}
             </if>
         </where>
     </select>

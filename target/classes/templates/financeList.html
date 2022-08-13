@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>财务信息</title>
+<link rel="stylesheet" th:href="@{/css/pintuer.css}">
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+<script th:src="@{/js/jquery.js}"></script>
+
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong class="icon-reorder"> 财务列表</strong></div>
+  <div class="padding border-bottom">
+    <button type="button" class="button border-yellow" onclick="window.location.href='#add'"><span class="icon-plus-square-o"></span> 添加财务信息</button>
+      <form style="float: right;margin-right: 220px;" th:action="@{/financeFind}" method="post">
+        <input type="text" placeholder="时间" name="time" class="input" style="width:250px; line-height:17px;display:inline-block" />
+        <input type="text" placeholder="填写人" name="fillPerson" class="input" style="width:250px; line-height:17px;display:inline-block" />
+        <input type="text" placeholder="财务单id" name="id" class="input" style="width:250px; line-height:17px;display:inline-block" />
+        <button  class="button border-main icon-search" onclick="changesearch()"  type="submit"> 搜索</button>
+      </form>
+    <a th:href="@{/financePage}" style="padding:5px; margin:5px;" class="button border-blue icon-edit" onclick="sorts()">刷新</a>
+  </div>
+  <table class="table table-hover text-center">
+    <tr>
+      <th>创建时间</th>
+      <th>ID</th>
+      <th>公司入款</th>
+      <th>线上支付</th>
+      <th>人工存入</th>
+      <th>ARPPU</th>
+      <th>人工扣款</th>
+      <th>出款金额</th>
+      <th>流水</th>
+      <th>损益</th>
+      <th>净利润</th>
+      <th>填写人id</th>
+      <th>操作</th>
+    </tr>
+    <div th:each="finance:${financeDOs}">
+    <tr >
+      <td th:text="${finance.gmtCreated}"></td>
+      <td th:text="${finance.id}"></td>
+      <td th:text="${finance.companyDep}"></td>
+      <td th:text="${finance.onlinePay}"></td>
+      <td th:text="${finance.manualDep}"></td>
+      <td th:text="${finance.arppu}"></td>
+      <td th:text="${finance.manualDed}"></td>
+      <td th:text="${finance.withdrawals}"></td>
+      <td th:text="${finance.fundFlow}"></td>
+      <td th:text="${finance.income}"></td>
+      <td th:text="${finance.netProfit}"></td>
+      <td th:text="${finance.fillPerson}"></td>
+      <td>
+        <form class="button-group" th:action="@{/deleteAlc}">
+          <button class="button border-red" name="financeId"  onclick="return del(1,1)" th:value="${finance.getId()}"><span class="icon-trash-o"></span> 删除申请</button>
+        </form>
+      </td>
+    </tr>
+    </div>
+
+  </table>
+</div>
+<script type="text/javascript">
+function del(id,mid){
+	if(confirm("您确定要删除吗?")){			
+		return true;
+	}
+	return false;
+}
+</script>
+<div class="panel admin-panel margin-top">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加财务信息</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" th:action="@{/addFinance}">
+      <div class="form-group">
+        <div class="label">
+          <label>ID：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="id" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>公司入款：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="companyDep" style="width:25%; float:left;" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>线上支付：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="onlinePay" style="width:25%; float:left;"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>人工存入：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="manualDep" style="width:25%; float:left;"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>ARPPU：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="arppu" style="width:25%; float:left;"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>人工扣款：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="manualDed"  style="width:25%; float:left;" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>出款金额：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="withdrawals"  style="width:25%; float:left;" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>流水：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="fundFlow"  style="width:25%; float:left;" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>损益：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="income"  style="width:25%; float:left;" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>净利润：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="netProfit" style="width:25%; float:left;" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>填写人id：</label>
+        </div>
+        <div class="field" >
+          <p type="text" class="input" style="width:25%; float:left;background: #bbbbbb" >[[${session.loginUser}]]</p>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>系统信息</title>
-<link rel="stylesheet" href="css/pintuer.css">
+<link rel="stylesheet" th:href="@{css/pintuer.css}">
 <style type="text/css">
 *{ margin:0px; padding:0px;}
 .error-container{ background:#fff; border:1px solid #0ae;  text-align:center; width:450px; margin:250px auto; font-family:Microsoft Yahei; padding-bottom:30px; border-top-left-radius:5px; border-top-right-radius:5px;  }
@@ -16,27 +16,15 @@ a{color:#0ae;}
 </head>
 <body class="no-skin">
 <div class="error-container"> 
-    <h1> 后台管理系统-信息提示 </h1>   
-    <div class="errorcon">     
-        <i class="icon-smile-o"></i>操作成功        
-        <span style="display:none;"><i class="icon-frown-o"></i>操作失败!</span>
-  
+    <h1> 企业信息管理系统-信息提示 </h1>
+    <div class="errorcon">
+        <i class="icon-smile-o"></i>操作成功,等待管理员审核
+        <i></i>审核结果将发送至您的邮箱，请注意查收
    </div>
-    <h4 class="smaller">页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b></h4> 
+    <h4 class="smaller">点此处 <a id="href" th:href="@{/financePage}">跳转返回</a> </h4>
    
 </div>
 
-<script type="text/javascript">
-(function(){
-var wait = document.getElementById('wait'),href = document.getElementById('href').href;
-var interval = setInterval(function(){
-	var time = --wait.innerHTML;
-	if(time <= 0) {
-		location.href = href;
-		clearInterval(interval);
-	};
-}, 1000);
-})();
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ package lsd.qiye.system.dataobject;
 public class FinanceApplicationDO {
     private long id;
     private String financeId;
-    private String applicant;
+    private String applicantId;
     private String applicantEmail;
 
     public long getId() {
@@ -22,12 +22,12 @@ public class FinanceApplicationDO {
         this.financeId = financeId;
     }
 
-    public String getApplicant() {
-        return applicant;
+    public String getApplicantId() {
+        return applicantId;
     }
 
-    public void setApplicant(String applicant) {
-        this.applicant = applicant;
+    public void setApplicantId(String applicantId) {
+        this.applicantId= applicantId;
     }
 
     public String getApplicantEmail() {

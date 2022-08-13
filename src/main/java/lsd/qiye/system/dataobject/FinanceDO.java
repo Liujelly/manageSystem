@@ -1,26 +1,28 @@
 package lsd.qiye.system.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class FinanceDO {
-    private LocalDateTime gmtCreated;
+    private String gmtCreated;
     private String id;
-    private long companyDep;
-    private long onlinePay;
-    private long manualDep;
-    private long arppu;
-    private long manualDed;
-    private long withdrawals;
-    private long fundFlow;
-    private long income;
-    private long netProfit;
+    private double companyDep;
+    private double onlinePay;
+    private double manualDep;
+    private double arppu;
+    private double manualDed;
+    private double fundFlow;
+    private double withdrawals;
+    private double income;
+    private double netProfit;
     private String fillPerson;
 
-    public LocalDateTime getGmtCreated() {
+    public String getGmtCreated() {
         return gmtCreated;
     }
 
-    public void setGmtCreated(LocalDateTime gmtCreated) {
+    public void setGmtCreated(String gmtCreated) {
         this.gmtCreated = gmtCreated;
     }
 
@@ -32,75 +34,75 @@ public class FinanceDO {
         this.id = id;
     }
 
-    public long getCompanyDep() {
+    public double getCompanyDep() {
         return companyDep;
     }
 
-    public void setCompanyDep(long companyDep) {
+    public void setCompanyDep(double companyDep) {
         this.companyDep = companyDep;
     }
 
-    public long getOnlinePay() {
+    public double getOnlinePay() {
         return onlinePay;
     }
 
-    public void setOnlinePay(long onlinePay) {
+    public void setOnlinePay(double onlinePay) {
         this.onlinePay = onlinePay;
     }
 
-    public long getManualDep() {
+    public double getManualDep() {
         return manualDep;
     }
 
-    public void setManualDep(long manualDep) {
+    public void setManualDep(double manualDep) {
         this.manualDep = manualDep;
     }
 
-    public long getArppu() {
+    public double getArppu() {
         return arppu;
     }
 
-    public void setArppu(long arppu) {
+    public void setArppu(double arppu) {
         this.arppu = arppu;
     }
 
-    public long getManualDed() {
+    public double getManualDed() {
         return manualDed;
     }
 
-    public void setManualDed(long manualDed) {
+    public void setManualDed(double manualDed) {
         this.manualDed = manualDed;
     }
 
-    public long getWithdrawals() {
-        return withdrawals;
-    }
-
-    public void setWithdrawals(long withdrawals) {
-        this.withdrawals = withdrawals;
-    }
-
-    public long getFundFlow() {
+    public double getFundFlow() {
         return fundFlow;
     }
 
-    public void setFundFlow(long fundFlow) {
+    public void setFundFlow(double fundFlow) {
         this.fundFlow = fundFlow;
     }
 
-    public long getIncome() {
+    public double getWithdrawals() {
+        return withdrawals;
+    }
+
+    public void setWithdrawals(double withdrawals) {
+        this.withdrawals = withdrawals;
+    }
+
+    public double getIncome() {
         return income;
     }
 
-    public void setIncome(long income) {
+    public void setIncome(double income) {
         this.income = income;
     }
 
-    public long getNetProfit() {
+    public double getNetProfit() {
         return netProfit;
     }
 
-    public void setNetProfit(long netProfit) {
+    public void setNetProfit(double netProfit) {
         this.netProfit = netProfit;
     }
 

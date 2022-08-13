@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lsd.qiye.system.dao.FinanceDAO">
+    <resultMap id="financeResultMap" type="lsd.qiye.system.dataobject.FinanceDO">
+        <id column="id" property="id"/>
+        <result column="gmt_created" property="gmtCreated"/>
+        <result column="company_dep" property="companyDep"/>
+        <result column="online_pay" property="onlinePay"/>
+        <result column="manual_dep" property="manualDep"/>
+        <result column="arppu" property="arppu"/>
+        <result column="manual_ded" property="manualDed"/>
+        <result column="fund_flow" property="fundFlow"/>
+        <result column="withdrawals" property="withdrawals"/>
+        <result column="income" property="income"/>
+        <result column="net_profit" property="netProfit"/>
+        <result column="fill_person" property="fillPerson"/>
+    </resultMap>
+    <select id="findById" resultMap="financeResultMap">
+        select * from finance where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="lsd.qiye.system.dataobject.FinanceDO">
+        insert into finance (gmt_created,id,company_dep,online_pay,manual_dep,arppu,manual_ded,fund_flow,withdrawals,income,net_profit,fill_person)
+        VALUES (#{gmtCreated},#{id},#{companyDep},#{onlinePay},#{manualDep},#{arppu},#{manualDed},#{fundFlow},#{withdrawals},#{income},#{netProfit},#{fillPerson})
+    </insert>
+
+    <update id="update" parameterType="lsd.qiye.system.dataobject.FinanceDO">
+        update finance
+        <set>
+            <if test="companyDep != null">
+                company_dep=#{companyDep},
+            </if>
+            <if test="userSex != null">
+                online_pay=#{onlinePay},
+            </if>
+            <if test="userPhone != null">
+                manual_dep=#{manualDep},
+            </if>
+            <if test="userPhone != null">
+                arppu=#{arppu},
+            </if>
+            <if test="userEmail != null">
+                manual_ded=#{manualDed},
+            </if>
+            <if test="department != null">
+                fund_flow=#{fundFlow},
+            </if>
+            <if test="posts != null">
+                withdrawals=#{withdrawals},
+            </if>
+            <if test="posts != null">
+                income=#{income},
+            </if>
+            <if test="posts != null">
+                net_profit=#{netProfit},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from finance where id=#{id}
+    </delete>
+
+    <select id="findComplex" resultMap="financeResultMap" >
+
+        select * from finance
+        <where>
+            <if test="time != null and time !='' and time !='0'.toString()" >
+                gmt_created LIKE CONCAT('%',#{time},'%')
+            </if>
+            <if test="fillPerson != null and fillPerson !='' and fillPerson !='0'.toString()">
+                and fill_person=#{fillPerson}
+            </if>
+            <if test="id != null and id !='' and id !='0'.toString()">
+                 and id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findAll" resultMap="financeResultMap">
+        select * from finance
+    </select>
+
+</mapper>

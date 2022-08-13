@@ -30,7 +30,7 @@
                     <label>初始密码：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input" style="width:25%; float:left;" name="userPwd" value="12346578"/>
+                    <input type="text" class="input" style="width:25%; float:left;" name="userPwd" value="12345678"/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -48,7 +48,9 @@
                     <label>性别：</label>
                 </div>
                 <div class="field">
-                    <input type="text" id="url1" name="userSex"  class="input tips" style="width:25%; float:left;"  data-toggle="hover" data-place="right" data-image=""  />
+                    <input type="radio" id="sexRadio1" name="userSex" value="男" checked="checked"/>男
+                    <input type="radio" id="sexRadio2" name="userSex" value="女"/>女
+                    <script>$("#sexRadio1").prop('checked',true);</script>
                 </div>
             </div>
             <div class="form-group">

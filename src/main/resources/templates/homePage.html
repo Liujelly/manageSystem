@@ -29,14 +29,14 @@
     <li><a th:href="@{/roleJudge}" target="right"><span class="icon-caret-right"></span>员工管理</a></li>
 
   </ul>
-  <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
+  <h2><span class="icon-jpy"></span>财务管理</h2>
   <ul style="display:block">
-      <li><a href="adv.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
+      <li><a th:href="@{financePage}" target="right"><span class="icon-caret-right"></span>财务表单</a></li>
       <li><a href="book.html" target="right"><span class="icon-caret-right"></span>留言管理</a></li>
       <li><a href="column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li>
     <li><a href="empList.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
     <li><a href="add.html" target="right"><span class="icon-caret-right"></span>添加内容</a></li>
-    <li><a href="cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
+    <li><a href="financeList.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
   </ul>
 </div>
 <script type="text/javascript">
@@ -54,7 +54,7 @@ $(function(){
 </script>
 <ul class="bread">
     <li>登录人</li>
-  <li><a href="##" id="a_leader_txt"> [[${session.loginUser}]]</a></li>
+  <li> [[${session.loginUser}]]</li>
 
 </ul>
 <div class="admin">

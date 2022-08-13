@@ -23,7 +23,7 @@
                         <input type="text" placeholder="部门" name="department" class="input" style="width:250px; line-height:17px;display:inline-block" />
                         <input type="text" placeholder="姓名" name="userName" class="input" style="width:250px; line-height:17px;display:inline-block" />
                         <input type="text" placeholder="id" name="userId" class="input" style="width:250px; line-height:17px;display:inline-block" />
-                        <button  class="button border-main icon-search" onclick="changesearch()"  type="submit"> 搜索</button>
+                        <button  class="button border-main icon-search"   type="submit"> 搜索</button>
                     </form>
                 </li>
                 <li><a th:href="@{/empPage}" style="padding:5px; margin:5px;" class="button border-blue icon-edit" onclick="sorts()">刷新</a></li>
@@ -63,7 +63,7 @@
                 </tr>
                     </form>
                 </div>
-                <tr >
+                <tr>
                     <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
                 </tr>
             </volist>
