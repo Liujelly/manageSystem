@@ -122,7 +122,7 @@ public class userController {
 
     }
     //角色判断
-    @GetMapping("/roleJudge")
+    @GetMapping("/EMProleJudge")
     public String roleJudge(HttpServletRequest request,HttpServletResponse response) throws IOException {
         HttpSession session= request.getSession();
         String userId=(String) session.getAttribute("loginUser");

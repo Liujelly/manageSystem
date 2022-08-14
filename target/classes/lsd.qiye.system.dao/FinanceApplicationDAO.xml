@@ -14,4 +14,15 @@
         insert into finance_application(finance_id,applicant_id,applicant_email,reason,gmt_created)
         VALUES (#{financeId},#{applicantId},#{applicantEmail},#{reason},#{gmtCreated})
     </insert>
+
+    <select id="findAll" resultMap="financeApplicationResultMap">
+        select * from finance_application
+    </select>
+    <select id="selectBy_fId" resultMap="financeApplicationResultMap">
+        select * from finance_application where finance_id=#{financeId};
+    </select>
+
+    <delete id="deleteBy_fId">
+        delete from finance_application where finance_id=#{financeId};
+    </delete>
 </mapper>

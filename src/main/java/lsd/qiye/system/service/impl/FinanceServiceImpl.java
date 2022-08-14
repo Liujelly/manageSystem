@@ -50,7 +50,7 @@ public class FinanceServiceImpl implements FinanceService {
 
     @Override
     public void deleteFinance(String id) {
-
+        financeDAO.delete(id);
     }
 
     @Override

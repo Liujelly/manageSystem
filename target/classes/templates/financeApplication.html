@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>财务申请审核</title>
+    <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+
+</head>
+<body>
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 财务申请审核</strong></div>
+      <div class="padding border-bottom" style="color: #FF9900;font-size: 15px;">
+          注意！同一个财务单的删除申请也将一起同意或拒绝!
+      </div>
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="120">id</th>
+        <th>财务单id</th>
+        <th>申请人id</th>
+        <th>申请人邮箱</th>
+        <th width="30%">理由</th>
+         <th width="120">申请时间</th>
+        <th>操作</th>       
+      </tr>
+        <div th:each="financeAlc:${financeAlcs}">
+            <tr>
+              <td th:text="${financeAlc.id}"></td>
+              <td th:text="${financeAlc.financeId}"></td>
+              <td th:text="${financeAlc.applicantId}"></td>
+              <td th:text="${financeAlc.applicantEmail}"></td>
+              <td th:text="${financeAlc.reason}"></td>
+              <td th:text="${financeAlc.gmtCreated}"></td>
+              <td>
+                  <form class="button-group" th:action="@{/refuseDelete}">
+                      <button class="button border-main" name="financeId" th:value="${financeAlc.financeId}"  onclick="return no(1)"><span class="icon-edit"></span>拒绝删除</button>
+                  </form>
+                  <form class="button-group" th:action="@{/releDelete}">
+                      <button class="button border-red" name="financeId" th:value="${financeAlc.financeId}" onclick="return yes(1)"><span class="icon-trash-o"></span>同意删除</button>
+                  </form>
+              </td>
+            </tr>
+        </div>
+      </tr>
+    </table>
+  </div>
+<script type="text/javascript">
+
+function yes(id){
+	if(confirm("您确定要同意删除，并发送通知邮件吗?")){
+		return true;
+	}
+	return false;
+}
+function no(id){
+    if(confirm("您确定要拒绝删除，并发送通知邮件吗?")){
+        return true;
+    }
+    return false;
+}
+
+
+</script>
+</body></html>
