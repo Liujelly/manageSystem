@@ -8,8 +8,7 @@
 <title>财务信息</title>
 <link rel="stylesheet" th:href="@{/css/pintuer.css}">
 <link rel="stylesheet" th:href="@{/css/admin.css}">
-<script th:src="@{/js/jquery.js}"></script>
-
+  <script th:src="@{/js/jquery.js}"></script>
 </head>
 <body>
 <div class="panel admin-panel">
@@ -18,7 +17,7 @@
     <button type="button" class="button border-yellow" onclick="window.location.href='#add'"><span class="icon-plus-square-o"></span> 添加财务信息</button>
       <form style="float: right;margin-right: 220px;" th:action="@{/financeFind}" method="post">
         <input type="text" placeholder="时间" name="time" class="input" style="width:250px; line-height:17px;display:inline-block" />
-        <input type="text" placeholder="填写人" name="fillPerson" class="input" style="width:250px; line-height:17px;display:inline-block" />
+        <input type="text" placeholder="填写人id" name="fillPerson" class="input" style="width:250px; line-height:17px;display:inline-block" />
         <input type="text" placeholder="财务单id" name="id" class="input" style="width:250px; line-height:17px;display:inline-block" />
         <button  class="button border-main icon-search" onclick="changesearch()"  type="submit"> 搜索</button>
       </form>
@@ -55,8 +54,8 @@
       <td th:text="${finance.netProfit}"></td>
       <td th:text="${finance.fillPerson}"></td>
       <td>
-        <form class="button-group" th:action="@{/deleteAlc}">
-          <button class="button border-red" name="financeId"  onclick="return del(1,1)" th:value="${finance.getId()}"><span class="icon-trash-o"></span> 删除申请</button>
+        <form class="button-group" th:action="@{/deleteAlcPage}">
+          <button class="button border-red" name="financeId" th:value="${finance.getId()}" ><span class="icon-trash-o"></span> 删除申请</button>
         </form>
       </td>
     </tr>
@@ -64,13 +63,6 @@
 
   </table>
 </div>
-<script type="text/javascript">
-function del(id,mid){
-	if(confirm("您确定要删除吗?")){			
-		return true;
-	}
-	return false;
-}
 </script>
 <div class="panel admin-panel margin-top">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加财务信息</strong></div>
@@ -167,7 +159,7 @@ function del(id,mid){
           <label>填写人id：</label>
         </div>
         <div class="field" >
-          <p type="text" class="input" style="width:25%; float:left;background: #bbbbbb" >[[${session.loginUser}]]</p>
+          <p type="text" class="input" style="width:25%; float:left;background: #dddddd" >[[${session.loginUser}]]</p>
           <div class="tips"></div>
         </div>
       </div>

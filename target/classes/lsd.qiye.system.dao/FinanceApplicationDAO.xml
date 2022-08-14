@@ -7,9 +7,11 @@
         <result column="finance_id" property="financeId"/>
         <result column="applicant_id" property="applicantId"/>
         <result column="applicant_email" property="applicantEmail"/>
+        <result column="reason" property="reason"/>
+        <result column="gmt_created" property="gmtCreated"/>
     </resultMap>
     <insert id="insert" parameterType="lsd.qiye.system.dataobject.FinanceApplicationDO">
-        insert into finance_application(finance_id,applicant_id,applicant_email)
-        VALUES (#{financeId},#{applicantId},#{applicantEmail})
+        insert into finance_application(finance_id,applicant_id,applicant_email,reason,gmt_created)
+        VALUES (#{financeId},#{applicantId},#{applicantEmail},#{reason},#{gmtCreated})
     </insert>
 </mapper>

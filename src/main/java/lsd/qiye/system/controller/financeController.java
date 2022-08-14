@@ -56,13 +56,22 @@ public class financeController {
         financeService.insertFinance(now, id,companyDep,onlinePay,  manualDep,  arppu, manualDed, withdrawals, fundFlow, income,  netProfit,userId );
         return"redirect:/financePage";
     }
-    //申请删除（添加到申请表中）及跳转
-    @GetMapping("/deleteAlc")
-    public String deleteAlc(@RequestParam("financeId") String financeId,HttpServletRequest request){
+    //申请删除
+    @GetMapping("/deleteAlcPage")
+    public String deleteAlc(@RequestParam("financeId") String financeId,Model model, HttpServletRequest request){
         HttpSession session=request.getSession();
         String applicantId=(String) session.getAttribute("loginUser");
         UserDO userDO=userService.userFind(applicantId);
-        financeApplicationService.insert(financeId,applicantId,userDO.getUserEmail());
+        model.addAttribute("financeId",financeId);
+        model.addAttribute("applicant",userDO);
+        return "deleteAlc";
+    }
+    //申请提交（添加到申请表中）及跳转提示界面
+    @PostMapping("/AlcPush")
+    public String AlcPush(@RequestParam("financeId") String financeId,@RequestParam("applicantId") String applicantId,
+                          @RequestParam("applicantEmail") String applicantEmail,@RequestParam("reason") String reason){
+        Date now=new Date();
+        financeApplicationService.insert(financeId,applicantId,applicantEmail,reason,now);
         return "tips";
     }
 }

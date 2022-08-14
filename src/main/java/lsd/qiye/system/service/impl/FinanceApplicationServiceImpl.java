@@ -6,16 +6,23 @@ import lsd.qiye.system.service.FinanceApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 public class FinanceApplicationServiceImpl implements FinanceApplicationService {
     @Autowired
     FinanceApplicationDAO financeApplicationDAO;
     @Override
-    public void insert(String financeId, String applicantId, String applicationEmail) {
+    public void insert(String financeId, String applicantId, String applicationEmail, String reason, Date now) {
         FinanceApplicationDO financeApplicationDO=new FinanceApplicationDO();
         financeApplicationDO.setApplicantId(applicantId);
         financeApplicationDO.setFinanceId(financeId);
         financeApplicationDO.setApplicantEmail(applicationEmail);
+        financeApplicationDO.setReason(reason);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String gmtCreated = sdf.format(now);
+        financeApplicationDO.setGmtCreated(gmtCreated);
         financeApplicationDAO.insert(financeApplicationDO);
     }
 }

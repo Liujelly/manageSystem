@@ -5,6 +5,24 @@ public class FinanceApplicationDO {
     private String financeId;
     private String applicantId;
     private String applicantEmail;
+    private String reason;
+    private String gmtCreated;
+
+    public String getGmtCreated() {
+        return gmtCreated;
+    }
+
+    public void setGmtCreated(String gmtCreated) {
+        this.gmtCreated = gmtCreated;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public long getId() {
         return id;
