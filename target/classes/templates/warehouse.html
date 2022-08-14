@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>库存信息</title>
+    <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+
+</head>
+<body>
+<div  id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 库存信息</strong></div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px;">
+                <li> <a class="button border-main icon-plus-square-o" th:href="@{/addProductJudge}"> 添加产品</a> </li>
+                <li>
+                    <form th:action="@{/warehouseFind}" method="post">
+                        <input type="text" placeholder="产品分类" name="category" class="input" style="width:200px; line-height:17px;display:inline-block" />
+                        <input type="text" placeholder="产品名" name="productName" class="input" style="width:200px; line-height:17px;display:inline-block" />
+                        <input type="text" placeholder="供应商" name="vendor" class="input" style="width:200px; line-height:17px;display:inline-block" />
+                        <input type="text" placeholder="产品id" name="productId" class="input" style="width:200px; line-height:17px;display:inline-block" />
+                        <button  class="button border-main icon-search"   type="submit"> 搜索</button>
+                    </form>
+                </li>
+                <li><a th:href="@{/warehousePage}" style="padding:5px; margin:5px;" class="button border-blue icon-edit" onclick="sorts()">刷新</a></li>
+            </ul>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="100" style="text-align:left; padding-left:35px;">产品id</th>
+                <th>产品名</th>
+                <th>供应商</th>
+                <th>产品分类</th>
+                <th>库存数量</th>
+                <th width="310">操作</th>
+            </tr>
+            <volist name="list" id="vo">
+
+                <div th:each="warehouseDO:${warehouseDOS}">
+                <tr >
+                    <td style="text-align:left; padding-left:20px;"  th:text="${warehouseDO.productId}"></td>
+                    <td  th:text="${warehouseDO.productName}"></td>
+                    <td width="10%" th:text="${warehouseDO.vendor}"></td>
+                    <td th:text="${warehouseDO.category}"></td>
+                    <td th:text="${warehouseDO.number}"></td>
+                    <td>
+                        <form class="button-group" th:action="@{/updateProductPage}">
+                            <button class="button border-main" name="productId" th:value="${warehouseDO.productId}"><span class="icon-edit"></span> 修改</button>
+                        </form>
+                    </td>
+                </tr>
+                    </form>
+                </div>
+            </volist>
+        </table>
+    </div>
+</div>
+
+</script>
+</body>
+</html>

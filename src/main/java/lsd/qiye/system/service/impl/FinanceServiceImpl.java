@@ -17,10 +17,7 @@ public class FinanceServiceImpl implements FinanceService {
     @Autowired
     private FinanceDAO financeDAO;
 
-    @Override
-    public FinanceDO findById(String id) {
-        return null;
-    }
+
 
     @Override
     public void insertFinance(Date now, String id, double companyDep, double onlinePay, double manualDep, double arppu,
@@ -43,10 +40,6 @@ public class FinanceServiceImpl implements FinanceService {
         financeDAO.insert(financeDO);
     }
 
-    @Override
-    public void updateFinance(String id, double companyDep, double onlinePay, double manualDep, double arppu, double manualDed, double withdrawals, double fundFlow, double income, double netProfit, String fillPerson) {
-
-    }
 
     @Override
     public void deleteFinance(String id) {

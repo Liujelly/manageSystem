@@ -109,14 +109,13 @@ public class userController {
         userService.updateInfo(userId,userName,userSex,userPhone,userEmail,department,posts);
         return "redirect:/empPage";
     }
-    //增加员工
+    //增加员工,添加到数据库
     @PostMapping("/addEmp")
     public  String addEmp(@RequestParam("userId") String userId,@RequestParam("userPwd") String userPwd,
                           @RequestParam("userName") String userName, @RequestParam("userSex") String userSex,
                           @RequestParam("userPhone") String userPhone, @RequestParam("userEmail") String userEmail,
                           @RequestParam("department") String department, @RequestParam("posts") String posts,
                           @RequestParam("role") String role,Model model){
-
         userService.insert(userId,userPwd,userName,userSex,userPhone,userEmail,department,posts,role);
         return "redirect:/empPage";
 
@@ -128,8 +127,8 @@ public class userController {
         String userId=(String) session.getAttribute("loginUser");
         response.setContentType("text/html;charset=utf8");
         PrintWriter out = response.getWriter();
-        Boolean bl=userService.roleJudge(userId);
-        if(bl){
+        Boolean role=userService.roleJudge(userId);
+        if(role){
             return "redirect:/empPage";
         }else{
             out.print("<script language=\"javascript\">alert('您不是管理员，没有权限进入该页面，将返回欢迎界面！');window.location.href='/welcome.html'</script>");

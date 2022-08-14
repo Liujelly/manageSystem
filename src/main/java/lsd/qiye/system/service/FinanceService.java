@@ -10,14 +10,9 @@ import java.util.List;
 
 public interface FinanceService {
 
-    FinanceDO findById(String id);
-
     void insertFinance(Date gmtCreated, String id, double companyDep, double onlinePay, double manualDep,
                        double arppu, double manualDed, double withdrawals, double fundFlow, double income,
                        double netProfit, String fillPerson);
-    void updateFinance(String id,double companyDep, double onlinePay,double manualDep,
-                       double arppu,double manualDed,double withdrawals,double fundFlow,double income,
-                       double netProfit,String fillPerson);
     void deleteFinance(String id);
     List<FinanceDO> findComplex(String time,String fillPerson,String id);
     List<FinanceDO> findAll();

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lsd.qiye.system.dao.WarehouseDAO">
+    <resultMap id="warehouseResultMap" type="lsd.qiye.system.dataobject.WarehouseDO">
+        <id column="product_id" property="productId"/>
+        <result column="product_name" property="productName"/>
+        <result column="vendor" property="vendor"/>
+        <result column="category" property="category"/>
+        <result column="number" property="number"/>
+    </resultMap>
+     <select id="findAll" resultMap="warehouseResultMap">
+         select * from warehouse
+     </select>
+
+    <insert id="insert" parameterType="lsd.qiye.system.dataobject.WarehouseDO">
+        insert into warehouse (product_id,product_name,vendor,category,number)
+        values (#{productId},#{productName},#{vendor},#{category},#{number})
+    </insert>
+
+    <select id="findComplex" resultMap="warehouseResultMap">
+        select * from warehouse
+        <where>
+            <if test="category != null and category !='' and category !='0'.toString()" >
+                category like CONCAT('%',#{category},'%')
+            </if>
+            <if test="productName != null and productName !='' and productName !='0'.toString()" >
+               and product_name like CONCAT('%',#{productName},'%')
+            </if>
+            <if test="vendor != null and vendor !='' and vendor !='0'.toString()" >
+                and vendor like CONCAT('%',#{vendor},'%')
+            </if>
+            <if test="productId != null and productId !='' and productId !='0'.toString()" >
+               and product_id=#{productId}
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterType="lsd.qiye.system.dataobject.WarehouseDO">
+        update warehouse
+        <set>
+            <if test="productName != null">
+                product_name=#{productName},
+            </if>
+            <if test="vendor != null">
+                vendor=#{vendor},
+            </if>
+            <if test="category != null">
+                category=#{category},
+            </if>
+            <if test="number != null">
+                number=#{number},
+            </if>
+        </set>
+        where product_id=#{productId}
+    </update>
+
+    <select id="findById" resultMap="warehouseResultMap">
+        select * from warehouse where product_id=#{productId}
+    </select>
+</mapper>
