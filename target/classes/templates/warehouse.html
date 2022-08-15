@@ -9,7 +9,6 @@
     <link rel="stylesheet" th:href="@{/css/pintuer.css}">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
     <script th:src="@{/js/jquery.js}"></script>
-
 </head>
 <body>
 <div  id="listform">
@@ -40,7 +39,6 @@
                 <th width="310">操作</th>
             </tr>
             <volist name="list" id="vo">
-
                 <div th:each="warehouseDO:${warehouseDOS}">
                 <tr >
                     <td th:text="${warehouseDO.productId}"></td>
@@ -60,7 +58,6 @@
         </table>
     </div>
 </div>
-
 </script>
 </body>
 </html>

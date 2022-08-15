@@ -9,12 +9,10 @@
     <link rel="stylesheet" th:href="@{/css/pintuer.css}">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
     <script th:src="@{/js/jquery.js}"></script>
-
 </head>
 <body>
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder">出入库申请审核</strong></div>
-
     <table class="table table-hover text-center">
       <tr>
         <th width="120">id</th>
@@ -49,7 +47,6 @@
     </table>
   </div>
 <script type="text/javascript">
-
 function yes(id){
 	if(confirm("您确定要批准，并发送邮件通知吗?")){
 		return true;
@@ -62,7 +59,5 @@ function no(id){
     }
     return false;
 }
-
-
 </script>
 </body></html>
