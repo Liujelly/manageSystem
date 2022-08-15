@@ -21,9 +21,9 @@
         <th>产品id</th>
         <th>产品名</th>
         <th>上家或下家</th>
-        <th width="30%">入库or出库</th>
+        <th>入库or出库</th>
           <th>数量</th>
-         <th width="120">申请人</th>
+          <th>申请人</th>
         <th>操作</th>       
       </tr>
         <div th:each="warehouseApplicationDO:${warehouseApplicationDOS}">
@@ -37,10 +37,10 @@
                 <td th:text="${warehouseApplicationDO.operatorId}"></td>
               <td>
                   <form class="button-group" th:action="@{/agreeApplication}">
-                      <button class="button border-main" name="id" th:value="${warehouseApplicationDO.id}" onclick="return yes(1)"><span class="icon-edit"></span>批准</button>
+                      <button class="button border-main" name="id" th:value="${warehouseApplicationDO.id}" onclick="return yes(1)"><span class="icon-check"></span>批准</button>
                   </form>
                   <form class="button-group" th:action="@{/refuseApplication}">
-                      <button class="button border-red" name="id"  th:value="${warehouseApplicationDO.id}" onclick="return no(1)"><span class="icon-trash-o"></span>否决</button>
+                      <button class="button border-red" name="id"  th:value="${warehouseApplicationDO.id}" onclick="return no(1)"><span class="icon-times"></span>否决</button>
                   </form>
               </td>
             </tr>
@@ -51,7 +51,7 @@
 <script type="text/javascript">
 
 function yes(id){
-	if(confirm("您确定要批准吗?")){
+	if(confirm("您确定要批准，并发送邮件通知吗?")){
 		return true;
 	}
 	return false;

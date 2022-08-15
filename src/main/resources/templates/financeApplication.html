@@ -36,11 +36,11 @@
               <td th:text="${financeAlc.reason}"></td>
               <td th:text="${financeAlc.gmtCreated}"></td>
               <td>
-                  <form class="button-group" th:action="@{/refuseDelete}">
-                      <button class="button border-main" name="financeId" th:value="${financeAlc.financeId}"  onclick="return no(1)"><span class="icon-edit"></span>拒绝删除</button>
-                  </form>
                   <form class="button-group" th:action="@{/releDelete}">
-                      <button class="button border-red" name="financeId" th:value="${financeAlc.financeId}" onclick="return yes(1)"><span class="icon-trash-o"></span>同意删除</button>
+                      <button class="button border-main" name="financeId" th:value="${financeAlc.financeId}" onclick="return yes(1)"><span class="icon-check"></span>同意删除</button>
+                  </form>
+                  <form class="button-group" th:action="@{/refuseDelete}">
+                      <button class="button border-red" name="financeId" th:value="${financeAlc.financeId}"  onclick="return no(1)"><span class="icon-times"></span>拒绝删除</button>
                   </form>
               </td>
             </tr>
