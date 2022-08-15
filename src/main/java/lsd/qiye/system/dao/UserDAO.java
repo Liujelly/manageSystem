@@ -24,7 +24,7 @@ public interface UserDAO {
     //复合查询(部门，名字，id）
     List<UserDO> findComplex(@Param("department") String department,
                              @Param("userName") String userName, @Param("userId") String userId);
-    //查找全部
+    //查找全
     List<UserDO> findAll();
 
 

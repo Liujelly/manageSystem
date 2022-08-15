@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lsd.qiye.system.dao.WarehouseApplicationDAO">
+    <resultMap id="WarehouseAlcResultMap" type="lsd.qiye.system.dataobject.WarehouseApplicationDO">
+        <id column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="product_name" property="productName"/>
+        <result column="up_down" property="upDown"/>
+        <result column="operation" property="operation"/>
+        <result column="operand" property="operand"/>
+        <result column="operator_id" property="operatorId"/>
+    </resultMap>
+    <select id="findAll" resultMap="WarehouseAlcResultMap">
+        select * from warehouse_application
+    </select>
+
+    <insert id="insert" parameterType="lsd.qiye.system.dataobject.WarehouseApplicationDO">
+        insert into warehouse_application(product_id,product_name,up_down,operation, operand, operator_id)
+        VALUES (#{productId},#{productName},#{upDown},#{operation},#{operand},#{operatorId})
+    </insert>
+    <delete id="deleteById">
+        delete from warehouse_application where id=#{id}
+    </delete>
+
+    <select id="findById" resultMap="WarehouseAlcResultMap">
+        select * from warehouse_application where id=#{id}
+    </select>
+
+</mapper>

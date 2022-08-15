@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>出库申请表</title>
+    <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 出库申请表</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" th:action="@{/OutWarehouseAlc}">
+            <div class="form-group">
+                <div class="label">
+                    <label>产品id：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" style="width:25%; float:left;"   name="productId"  />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>产品名：</label>
+                </div>
+                <div class="field">
+                    <input type="text" id="url1" name="productName"  class="input tips" style="width:25%; float:left;"   />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>产品去向：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" style="width:25%; float:left;"   name="whereabouts"  />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>出库数量：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input" style="width:25%; float:left;"   name="operand"  />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>申请人id：</label>
+                </div>
+                <div class="field" >
+                    <p type="text" class="input" style="width:25%; float:left;background: #dddddd" >[[${session.loginUser}]]</p>
+                    <div class="tips"></div>
+                </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 提交申请</button>
+                    <a class="button bg-main " th:href="@{/OutWarehousePage}">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body></html>

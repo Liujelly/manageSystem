@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>入库管理</title>
+    <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+
+</head>
+<body>
+<div  id="listform">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 入库管理</strong></div>
+        <div class="padding border-bottom">
+            <ul class="search" style="padding-left:10px;">
+                <li> <a class="button border-main icon-plus-square-o" th:href="@{/inWarehouseAlcPage.html}"> 申请入库</a> </li>
+                <li>
+                    <form th:action="@{/InWFindComplex}" method="post">
+                        <input type="text" placeholder="产品id或产品名" name="keyWord" class="input" style="width:200px; line-height:17px;display:inline-block" />
+                        <input type="text" placeholder="时间" name="time" class="input" style="width:200px; line-height:17px;display:inline-block" />
+                        <button  class="button border-main icon-search"   type="submit"> 搜索</button>
+                    </form>
+                </li>
+                <li><a th:href="@{/InWarehousePage}" style="padding:5px; margin:5px;" class="button border-blue icon-edit" onclick="sorts()">刷新</a></li>
+            </ul>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th>id</th>
+                <th>产品id</th>
+                <th>产品名</th>
+                <th>供应商</th>
+                <th>入库数量</th>
+                <th>申请人id</th>
+                <th>审核人id</th>
+                <th>入库时间</th>
+            </tr>
+            <volist name="list" id="vo">
+                <div th:each="inWarehouseDO:${inWarehouseDOS}">
+                <tr >
+                    <td th:text="${inWarehouseDO.id}"></td>
+                    <td th:text="${inWarehouseDO.productId}"></td>
+                    <td th:text="${inWarehouseDO.productName}"></td>
+                    <td th:text="${inWarehouseDO.vendor}"></td>
+                    <td th:text="${inWarehouseDO.operand}"></td>
+                    <td th:text="${inWarehouseDO.operatorId}"></td>
+                    <td th:text="${inWarehouseDO.reviewerId}"></td>
+                    <td th:text="${inWarehouseDO.gmtCreated}"></td>
+                </tr>
+                    </form>
+                </div>
+            </volist>
+        </table>
+    </div>
+</div>
+
+</script>
+</body>
+</html>

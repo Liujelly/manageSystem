@@ -38,7 +38,7 @@ public class FinanceAlcController {
     //同时删除申请表和财务表中信息
     @GetMapping("/releDelete")
     public String releDelete(@RequestParam("financeId") String financeId){
-        String text="审核通过，您申请的id为"+financeId+"的改财务单信息已删除。";
+        String text="审核通过，您申请的id为"+financeId+"的财务单信息已删除。";
         List<String> emails=financeApplicationService.findEmails(financeId);
         for(String email:emails){
             sendMailService.sendMail(email,text);

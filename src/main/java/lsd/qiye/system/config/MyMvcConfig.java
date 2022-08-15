@@ -27,7 +27,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/addEmp.html").setViewName("addEmp");
         //增加产品页面重定向
         registry.addViewController("/addProductPage.html").setViewName("addProduct");
-
+        //入库申请页面重定向
+        registry.addViewController("/inWarehouseAlcPage.html").setViewName("inWarehouseAlc");
+        //出库申请页面重定向
+        registry.addViewController("/outWarehouseAlcPage.html").setViewName("outWarehouseAlc");
     }
 
     @Override

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lsd.qiye.system.dao.InWarehouseDAO">
+    <resultMap id="InWarehouseResultMap" type="lsd.qiye.system.dataobject.InWarehouseDO">
+        <id column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="product_name" property="productName"/>
+        <result column="vendor" property="vendor"/>
+        <result column="operand" property="operand"/>
+        <result column="operator_id" property="operatorId"/>
+        <result column="reviewer_id" property="reviewerId"/>
+        <result column="gmt_created" property="gmtCreated"/>
+    </resultMap>
+    <select id="findAll" resultMap="InWarehouseResultMap">
+        select * from in_warehouse
+    </select>
+
+    <insert id="insert" parameterType="lsd.qiye.system.dataobject.InWarehouseDO">
+        insert into in_warehouse(product_id,product_name,vendor,operand,operator_id, reviewer_id, gmt_created)
+        VALUES (#{productId},#{productName},#{vendor},#{operand},#{operatorId},#{reviewerId},#{gmtCreated})
+    </insert>
+
+    <select id="findComplex" resultMap="InWarehouseResultMap">
+        select * from in_warehouse
+        <where>
+            <if test="keyWord != null and keyWord !='' and keyWord !='0'.toString()">
+                product_id like CONCAT('%',#{keyWord},'%')
+                or product_name like CONCAT('%',#{keyWord},'%')
+            </if>
+            <if test="time != null and time !='' and time !='0'.toString()">
+                and  gmt_created  like CONCAT('%',#{time},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -16,4 +16,5 @@ public interface WarehouseDAO {
                                   @Param("vendor") String vendor,@Param("productId") String productId);
     int update(WarehouseDO warehouseDO);
     WarehouseDO findById(@Param("productId") String productId);
+
 }

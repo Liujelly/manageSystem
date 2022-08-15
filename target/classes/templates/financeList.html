@@ -168,11 +168,21 @@
           <label></label>
         </div>
         <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+          <button class="button bg-main icon-check-square-o" type="submit" onclick="return add(1,1,1)"> 提交</button>
         </div>
       </div>
     </form>
   </div>
 </div>
+<!--添加信息确认-->
+<script type="text/javascript">
+  function add(id,mid,iscid){
+    if(confirm("添加后无法修改，是否确认信息无误，确认提交？")){
+      return true;
+    }else{
+      return false;
+    }
+  }
+</script>
 </body>
 </html>
