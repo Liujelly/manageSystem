@@ -56,7 +56,12 @@ public class WarehouseApplicationController {
         //从申请表中得到需要操作的产品的id
         String productId=warehouseApplicationDO.getProductId();
         //查询库存数量
-        long number=warehouseService.findById(productId).getNumber();
+        WarehouseDO warehouseDO=warehouseService.findById(productId);
+        if(warehouseDO==null){
+            out.print("<script language=\"javascript\">alert('不存在该库存产品，请先联系管理员添加！');window.location.href='/warehouseApplicationPage'</script>");
+            return "warehouseApplication";
+        }
+        long number= warehouseDO.getNumber();
         //如果是入库不用判断数量，直接加到库存
         if(warehouseApplicationDO.getOperation().equals("入库")){
             //更新库存
